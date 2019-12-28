@@ -450,9 +450,10 @@ public:
 
 	QByteArray v;
 
-private:
 	explicit string_type(QByteArray &&data) : v(std::move(data)) {
 	}
+
+private:
 
 	friend string_type make_string(const std::string &v);
 	friend string_type make_string(const QByteArray &v);

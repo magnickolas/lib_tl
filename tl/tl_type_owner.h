@@ -58,15 +58,16 @@ public:
 	~type_owner() {
 		decrementCounter();
 	}
+	type_data *_data = nullptr;
 
 protected:
 	type_owner() = default;
-	type_owner(const type_data *data) : _data(data) {
+	type_owner(const type_data *data) : _data((type_data*)data) {
 	}
 
 	void setData(const type_data *data) {
 		decrementCounter();
-		_data = data;
+		_data = (type_data*)data;
 	}
 
 	// Unsafe cast, type should be checked by the caller.
@@ -92,8 +93,6 @@ private:
 			delete base::take(_data);
 		}
 	}
-
-	const type_data *_data = nullptr;
 
 };
 
